@@ -67,7 +67,7 @@ publishing {
                     developer {
                         id.set("panyy")
                         name.set("panyy")
-                        email.set("panyyuan@gmail.com")
+                        email.set("416849838@qq.com")
                     }
                 }
                 scm {
