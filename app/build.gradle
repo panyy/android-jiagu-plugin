@@ -1,16 +1,14 @@
-import com.android.build.api.dsl.SigningConfig
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.panyy.jiagu'
+//apply plugin: 'com.github.panyy.jiagu'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.github.ixiaow.jiagu.plugin"
+        applicationId "com.github.panyy.jiagu"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -47,13 +45,13 @@ android {
         lianxiang {
             versionCode 1
             versionName "1.0.1"
-            applicationId "com.mxy.multi.release1"
+            applicationId "com.github.panyy.jiagu1"
             resValue "string", "app_name", "加固打包1"
         }
         lingchuang {
             versionCode 2
             versionName "1.0.2"
-            applicationId "com.mxy.multi.release2"
+            applicationId "com.github.panyy.jiagu2"
             resValue "string", "app_name", "加固打包2"
         }
     }
@@ -72,18 +70,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-jiagu {
-    home 'D:\\AndroidProjects\\AndroidMultiChannel-master' // 360加固软件的根目录
+/*jiagu {
+    home "${rootDir.absolutePath}/plugin" // 360加固软件的根目录
     buildTypes 'release' // 需要加固的编译类型
-    configs '-crashlog' // 选择360的可选配置服务
-    username '416849838@qq.com' // 360加固用户名
-    password '1panyuanyuan' // 360加固密码
-    charsetName 'GBK' // 360加固控制台输出字符编码
+    configs '-crashlog'  // 选择360的可选配置服务
+    username 'username'  // 360加固用户名
+    password 'password'  // 360加固密码
+    charsetName 'GBK'    // 360加固控制台输出字符编码
     // apk签名文件， 如果在Android中配置了签名文件，此项可以不用配置，插件会自动读取名为'release'的签名文件
-    /*signingConfig {
-        key_alias "lvya2020"
-        key_password "lvya2020"
-        key_store_password "lvya2020"
-        key_store_file "D:\\keystore\\lvya.jsk"
-    }*/
-}
+    *//*signingConfig {
+        key_alias "alias"
+        key_password "password"
+        key_store_password "store_password"
+        key_store_file ""
+    }*//*
+}*/
