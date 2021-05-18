@@ -11,7 +11,6 @@ kotlin {
         implementation(gradleApi())
         compileOnly("com.android.tools.build:gradle:4.0.1")
     }
-
 }
 
 repositories {
@@ -42,7 +41,6 @@ tasks {
     }
 }
 
-
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -67,7 +65,7 @@ publishing {
                     developer {
                         id.set("panyy")
                         name.set("panyy")
-                        email.set("416849838@qq.com")
+                        email.set("panyyuan@gmail.com")
                     }
                 }
                 scm {
