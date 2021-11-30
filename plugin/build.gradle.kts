@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm")
     id("org.jetbrains.dokka") version "1.4.0-rc"
-    id("com.github.dcendents.android-maven")
     `maven-publish`
 }
 
@@ -19,7 +18,7 @@ repositories {
 }
 
 group = "com.github.panyy"
-version = "1.0.0"
+version = "1.0.1"
 
 tasks {
     val sourcesJar by registering(Jar::class) {
@@ -78,7 +77,6 @@ publishing {
     }
     repositories {
         maven {
-            // change URLs to point to your repos, e.g. http://my.org/repo
             val releasesRepoUrl = uri("$buildDir/repos/releases")
             val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
             url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl

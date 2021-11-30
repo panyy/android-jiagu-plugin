@@ -8,7 +8,7 @@ import java.nio.charset.Charset
  */
 class JiaGuCmds(extension: JiaGuExtension) {
     //360加固的根目录 jiagu
-    private val baseDir: String = "${extension.home}${File.separator}jiagu"
+    private val baseDir: String = extension.getJiaGuHome()
 
     /**
      * 是否已经进行数据初始化

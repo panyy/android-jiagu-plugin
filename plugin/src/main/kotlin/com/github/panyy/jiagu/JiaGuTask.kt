@@ -1,7 +1,6 @@
 package com.github.panyy.jiagu
 
 import com.android.build.gradle.AppExtension
-import com.android.ide.common.util.toPathString
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
@@ -35,7 +34,7 @@ open class JiaGuTask : DefaultTask() {
     @TaskAction
     fun action() {
         log("开始执行加固任务")
-        appVersion = android.defaultConfig.versionName.replace(".", "")
+        appVersion = android.defaultConfig.versionName?.replace(".", "")!!
         cmds = JiaGuCmds(jiaGuExtension)
         // 遍历得到符合编译类型的 applicationVariants
         val variants = android.applicationVariants.distinctBy { it.buildType.name }.asSequence()

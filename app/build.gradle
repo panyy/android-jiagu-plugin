@@ -70,18 +70,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-/*jiagu {
-    home "${rootDir.absolutePath}/plugin" // 360加固软件的根目录
-    buildTypes 'release' // 需要加固的编译类型
-    configs '-crashlog'  // 选择360的可选配置服务
-    username 'username'  // 360加固用户名
-    password 'password'  // 360加固密码
-    charsetName 'GBK'    // 360加固控制台输出字符编码
-    // apk签名文件， 如果在Android中配置了签名文件，此项可以不用配置，插件会自动读取名为'release'的签名文件
-    *//*signingConfig {
-        key_alias "alias"
-        key_password "password"
-        key_store_password "store_password"
-        key_store_file ""
-    }*//*
-}*/
+//jiagu {
+//    home "${rootDir.absolutePath}/plugin" // 360加固软件的根目录
+//    buildTypes 'release' // 需要加固的编译类型
+//    configs '-crashlog'  // 选择360的可选配置服务
+//    username 'username'  // 360加固用户名
+//    password 'password'  // 360加固密码
+//    charsetName 'GBK'    // 360加固控制台输出字符编码
+//    // apk签名文件， 如果在Android中配置了签名文件，此项可以不用配置，插件会自动读取名为'release'的签名文件
+//    /*signingConfig {
+//        key_alias "alias"
+//        key_password "password"
+//        key_store_password "store_password"
+//        key_store_file ""
+//    }*/
+//}

@@ -1,6 +1,7 @@
 package com.github.panyy.jiagu
 
 import com.android.builder.model.SigningConfig
+import java.io.File
 
 /**
  * 在Gradle中配置的"jiagu"参数实例映射
@@ -91,6 +92,17 @@ open class JiaGuExtension(
         requireNotNull(username) { "360加固用户名不能为空!" }
         requireNotNull(password) { "360加固密码不能为空!" }
         requireNotNull(signingConfig) { "无法找到Apk的签名文件不存在，请先配置release签名文件!" }
+    }
+
+    fun getJiaGuHome(): String {
+        val os = System.getProperty("os.name")
+        return if (os.toLowerCase().startsWith("win")) {
+            log("当前是windows系统")
+            "${home}${File.separator}jiagu-windows"
+        } else {
+            log("当前是linux系统")
+            "${home}${File.separator}jiagu-linux"
+        }
     }
 }
 

@@ -1,6 +1,5 @@
 package com.github.panyy.jiagu
 
-
 import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
