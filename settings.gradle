@@ -1,3 +1,1 @@
-include ':plugin'
-include ':app'
-rootProject.name = "android-jiagu-plugin"
+include ':app', ':jiaguplugin'

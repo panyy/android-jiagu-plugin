@@ -1,73 +1,103 @@
-# Android-Jiagu-Plugin [![](https://jitpack.io/v/panyy/android-jiagu-plugin.svg)](https://jitpack.io/#panyy/android-jiagu-plugin)
+# 360加固插件 [![JiaguPlugin](https://jitpack.io/v/com.github.keepLove/android-jiagu-plugin.svg)](https://jitpack.io/#com.github.keepLove/android-jiagu-plugin)
 
-一款实现了360加固的Gradle插件，在自动编译打包后进行360加固流程操作。
+## Dependency
 
-### 使用步骤
+#### Step 1. Add the JitPack repository to your build file
 
-#### 1. 添加依赖
+Add it in your root build.gradle at the end of repositories:
 
-* 在根`build.gradle`中添加：
-
-```groovy
-allprojects {
-    repositories {
-        maven { url "https://jitpack.io" }
-    }
-}
-
-dependencies {
-    ...
-    classpath 'com.android.tools.build:gradle:4.0.1'
-    classpath 'com.github.panyy:android-jiagu-plugin:$version'
-}
+```
+    allprojects {
+        repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
 
-(请替换 `$version`为最新的版本号:[![](https://jitpack.io/v/panyy/android-jiagu-plugin.svg)](https://jitpack.io/#panyy/android-jiagu-plugin))
+#### Step 2. Add the dependency
 
-**tips:** `com.android.tools.build:gradle`的版本号必须>= 4.0.1
-
-* 在`app`的模块`build.gradle`中添加：
-
-```groovy
-apply plugin: 'com.github.panyy.jiagu'
+```
+    dependencies {
+        ...
+        classpath 'com.github.keepLove:android-jiagu-plugin:TAG'
+	}
 ```
 
-#### 2. 参数配置
+#### Step 3. Add the pulgin
 
-使用这款插件需要在`app`的`build.gradle`中添加一些配置信息，如下：
+```
+apply plugin: 'jiagu'
 
-```groovy
 jiagu {
-    home '../360jiagu' // 360加固软件的根目录
-    buildTypes 'release', 'debug' // 需要加固的编译类型
-    configs '-crashlog' // 选择360的可选配置服务
-    username 'user' // 360加固用户名
-    password 'password' // 360加固密码
-    charsetName 'GBK' // 360加固控制台输出字符编码
-    // apk签名文件， 如果在Android中配置了签名文件，此项可以不用配置，插件会自动读取名为'release'的签名文件
-    signingConfig { 
-        key_alias         : KEY_ALIAS, 
-        key_password      : KEY_PASSWORD,
-        key_store_password: KEY_STORE_PASSWORD,
-        key_store_file    : KEY_STORE_FILE
+    debug = false // debug 模式
+    jiaGuDir = "D:\\360jiagubao_windows_64\\jiagu" // 360加固文件根目录 必填
+    username = "xxxxx" // 360加固用户名 必填
+    password = "xxx" // 360加固密码 必填
+    signingConfig = null // 签名文件，默认读取buildType中的signingConfig 或名为'release'的签名文件
+    channelFile = null // 指向通道备注文件.txt 默认null
+    outputFileDir = null // 输出apk文件地址 默认输出 build\jiagu
+    config = null // 扩展配置
+    charsetName = "GBK" // 控制台输出编码方式，默认GBK
+}
+
+
+```
+
+**签名**
+
+插件使用 buildTypes 里面的签名配置
+
+```
+android {
+    ...
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
     }
 }
 ```
 
-#### 3. 开始加固
+或者使用名为release的签名配置
 
-确认上述参数无误后，就可以在控制台中切换到当前项目根目录执行
-
-```shell
-# 各个系统的控制台gradle命令可能不一样： ./gradlew 或 gradlew 
-./gradlew clean jiaGuApk 
+```
+    signingConfigs {
+        release {
+            ...
+        }
+    }
 ```
 
-### 文档
+**config**
 
-[android-jiagu-plugin](https://panyy.github.io/android-jiagu-plugin/plugin/com.github.panyy.jiagu/index.html)
+这个是360加固助手的配置加固可选项，高级加固选项需要会员 [前往](http://jiagu.360.cn/#/global/vip/packages)
 
-### 360加固助手
+```
+ ----------------------可选增强服务-------------------------------
+         [-crashlog]                             【崩溃日志分析】
+         [-x86]                                  【x86支持】
+         [-analyse]                              【加固数据分析】
+         [-nocert]                               【跳过签名校验】
+ ----------------------高级加固选项-------------------------------
+         [-vmp]                                  【全VMP保护】
+         [-data]                                 【本地数据文件保护】
+         [-assets]                               【资源文件保护】
+         [-filecheck]                            【文件完整性校验】
+         [-ptrace]                               【Ptrace防注入】
+         [-so]                                   【SO文件保护】
+         [-dex2c]                                【dex2C保护】
+         [-string_obfus]                         【字符串加密】
+         [-dex_shadow]                           【DexShadow】
+         [-so_private]                           【SO防盗用】
+```
 
-[360加固助手](https://jiagu.360.cn/#/global/download)
+## Use
+
+在Android Studio的Gradle窗口app/Tasks中有一个jiagu目录。
+
+jiaGuApk开头是直接加固当前已有apk，jiaGuAssemble开头是运行assembleRelease/Debug之后进行加固。
+
+## [360加固助手](https://jiagu.360.cn/#/global/download)
 

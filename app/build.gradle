@@ -1,33 +1,45 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'com.github.panyy.jiagu'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'jiagu'
+
+jiagu {
+    debug = true
+    jiaGuDir = "C:\\Users\\41684\\Desktop\\jiagu-windows1"
+    username = "416849838@qq.com"
+    password = "1panyuanyuan"
+    charsetName = "UTF-8"
+}
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
-
     defaultConfig {
-        applicationId "com.github.panyy.jiagu"
-        minSdkVersion 16
+        applicationId "com.s.android.plugin.jiaguplugin"
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         flavorDimensions "versionCode"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
     signingConfigs {
         release {
-            storeFile file('multi.jks')
-            storePassword "mxymulti"
-            keyAlias "multiKey"
-            keyPassword "mxymulti"
+            storeFile file('jiagu.jks')
+            storePassword "123456"
+            keyAlias "jiagu"
+            keyPassword "123456"
         }
     }
-
     buildTypes {
         release {
+            shrinkResources true
+            minifyEnabled true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            shrinkResources false
             minifyEnabled false
             zipAlignEnabled true
             signingConfig signingConfigs.release
@@ -35,16 +47,10 @@ android {
         }
     }
 
-    android.applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.outputFileName = "${variant.productFlavors[0].name}_${variant.versionName}.apk"
-        }
-    }
-
     productFlavors {
         lianxiang {
-            versionCode 1
-            versionName "1.0.1"
+            versionCode 2
+            versionName "1.0.2"
             applicationId "com.github.panyy.jiagu1"
             resValue "string", "app_name", "加固打包1"
         }
@@ -56,32 +62,66 @@ android {
         }
     }
 
+//    flavorDimensions 'app', 'dev'
+//    productFlavors {
+//        apptest1 {
+//            dimension = 'app'
+//            applicationId = 'com.s.android.plugin.jiaguplugin.test1'
+//        }
+//        apptest2 {
+//            dimension = 'app'
+//            applicationId = 'com.s.android.plugin.jiaguplugin.test2'
+//        }
+//        devtest1 {
+//            dimension = 'dev'
+//        }
+//        devtest2 {
+//            dimension = 'dev'
+//        }
+//    }
+//    applicationVariants.all { variant ->
+//        if (variant.flavorName == "apptest1") { // 渠道1：channel1
+//            variant.ext.jiaguEnable = false
+//            variant.ext.jiaguJiaguEnable = false
+//            variant.ext.jiaguFirEnable = false
+//        } else if (variant.flavorName == "apptest2") { // 渠道2：channel2
+//            variant.ext.jiaguEnable = true
+//            variant.ext.jiaguJiaguEnable = false
+//            variant.ext.jiaguFirEnable = false
+//        }
+//    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:1.3.0"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    testImplementation 'junit:junit:4.12'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-}
 
-//jiagu {
-//    home "${rootDir.absolutePath}/plugin" // 360加固软件的根目录
-//    buildTypes 'release' // 需要加固的编译类型
-//    configs '-crashlog'  // 选择360的可选配置服务
-//    username 'username'  // 360加固用户名
-//    password 'password'  // 360加固密码
-//    charsetName 'GBK'    // 360加固控制台输出字符编码
-//    // apk签名文件， 如果在Android中配置了签名文件，此项可以不用配置，插件会自动读取名为'release'的签名文件
-//    /*signingConfig {
-//        key_alias "alias"
-//        key_password "password"
-//        key_store_password "store_password"
-//        key_store_file ""
-//    }*/
-//}
+}
