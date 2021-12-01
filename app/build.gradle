@@ -6,8 +6,8 @@ apply plugin: 'jiagu'
 jiagu {
     debug = true
     jiaGuDir = "C:\\Users\\41684\\Desktop\\jiagu-windows1"
-    username = "416849838@qq.com"
-    password = "1panyuanyuan"
+    username = "test"
+    password = "test"
     charsetName = "UTF-8"
 }
 
