@@ -14,7 +14,7 @@ jiagu {
 android {
     compileSdkVersion 30
     defaultConfig {
-        applicationId "com.s.android.plugin.jiaguplugin"
+        applicationId "com.panyy.jiagu"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -51,13 +51,13 @@ android {
         lianxiang {
             versionCode 2
             versionName "1.0.2"
-            applicationId "com.github.panyy.jiagu1"
+            applicationId "com.panyy.jiagu1"
             resValue "string", "app_name", "加固打包1"
         }
         lingchuang {
             versionCode 2
             versionName "1.0.2"
-            applicationId "com.github.panyy.jiagu2"
+            applicationId "com.panyy.jiagu2"
             resValue "string", "app_name", "加固打包2"
         }
     }
@@ -66,11 +66,11 @@ android {
 //    productFlavors {
 //        apptest1 {
 //            dimension = 'app'
-//            applicationId = 'com.s.android.plugin.jiaguplugin.test1'
+//            applicationId = 'com.panyy.jiagu1'
 //        }
 //        apptest2 {
 //            dimension = 'app'
-//            applicationId = 'com.s.android.plugin.jiaguplugin.test2'
+//            applicationId = 'com.panyy.jiagu2'
 //        }
 //        devtest1 {
 //            dimension = 'dev'
