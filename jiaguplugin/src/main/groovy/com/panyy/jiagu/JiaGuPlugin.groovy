@@ -27,7 +27,9 @@ class JiaGuPlugin implements Plugin<Project> {
                         if (jiaGuExtension.signingConfig == null) {
                             jiaGuExtension.signingConfig = variant.signingConfig
                         }
-                        addJiaGuTask(resource, variant.flavorName, variant.buildType.name)
+                        if (jiaGuExtension.buildTypes == null || jiaGuExtension.buildTypes.contains(variant.buildType.name)) {
+                            addJiaGuTask(resource, variant.flavorName, variant.buildType.name)
+                        }
                     }
                 })
             }

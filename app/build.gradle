@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jiagu'
+/*apply plugin: 'jiagu'
 
 jiagu {
     debug = true
@@ -9,7 +9,8 @@ jiagu {
     username = "test"
     password = "test"
     charsetName = "UTF-8"
-}
+    buildTypes = "release"
+}*/
 
 android {
     compileSdkVersion 30

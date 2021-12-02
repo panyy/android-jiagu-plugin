@@ -1,4 +1,4 @@
-# 360加固插件 [![JiaguPlugin](https://jitpack.io/v/com.github.keepLove/android-jiagu-plugin.svg)](https://jitpack.io/#com.github.keepLove/android-jiagu-plugin)
+# 360加固插件 [![JiaguPlugin](https://jitpack.io/v/com.github.panyy/android-jiagu-plugin.svg)](https://jitpack.io/#com.github.panyy/android-jiagu-plugin)
 
 ## Dependency
 
@@ -20,7 +20,7 @@ Add it in your root build.gradle at the end of repositories:
 ```
     dependencies {
         ...
-        classpath 'com.github.keepLove:android-jiagu-plugin:TAG'
+        classpath 'com.github.panyy:android-jiagu-plugin:TAG'
 	}
 ```
 

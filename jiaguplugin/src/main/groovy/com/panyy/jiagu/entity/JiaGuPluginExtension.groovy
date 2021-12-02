@@ -42,6 +42,11 @@ class JiaGuPluginExtension {
      */
     String charsetName = "GBK"
 
+    /**
+     * 需要加固的编译类型，如 release debug
+     */
+    String buildTypes = null
+
     void checkParams() {
         if (Utils.isEmpty(jiaGuDir)) {
             throw new NullPointerException("360加固文件根目录不能为空")
